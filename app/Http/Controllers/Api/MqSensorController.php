@@ -11,11 +11,14 @@ class MqSensorController extends Controller
     function index()
     {
         $sensorsData = MqSensor::orderBy('created_at', 'desc')
-            ->limit(20)
+            ->limit(10)
             ->get();
 
         return response()
-            ->json($sensorsData, 200);
+            ->json([
+                'data' => $sensorsData,
+                'message'=> 'Success'
+            ], 200);
     }
 
     function show($id)

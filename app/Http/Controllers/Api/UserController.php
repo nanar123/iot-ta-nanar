@@ -20,21 +20,14 @@ class UserController extends Controller
         ], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-         // mmebuat validasi
-         $validated = $request->validate([
+        // mmebuat validasi
+        $validated = $request->validate([
             'name'      => [
                 'required',
                 'string',
@@ -47,9 +40,16 @@ class UserController extends Controller
                 'unique:users,email'
             ],
             'password'  => [
-                'nullable',
+                'required',
                 'min:8'
             ],
+            'role'  => [
+                'required',
+                'in:admin,user'
+            ],
+            'phone_number'  => [
+                'nullable',
+            ]
             // 'password_confirmation' => [
             //     'required',
             //     'same:password'
@@ -64,7 +64,6 @@ class UserController extends Controller
             'data'      => $user
         ], 201);
 
-
     }
 
     /**
@@ -72,7 +71,11 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::find($id);
+        return response()->json([
+            'message'   => 'Berhasil menampilkan user ',
+            'data'      => $user
+        ], 201);
     }
 
     /**
@@ -83,19 +86,71 @@ class UserController extends Controller
         //
     }
 
+
+
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'name'      => [
+                'required',
+                'string',
+                'min:3',
+                'max:255'
+            ],
+            'email'     => [
+                'required',
+                'email',
+                'unique:users,email,' . $id
+            ],
+            'password'  => [
+                'nullable',
+                'min:8'
+            ],
+            'role'  => [
+                'required',
+                'in:admin,user'
+            ],
+            'phone_number'  => [
+                'nullable',
+            ],
+
+            // 'password_confirmation' => [
+            //     'required',
+            //     'same:password'
+            // ]
+        ]);
+
+        if ($request->filled('password')) {
+            $validated['password'] = bcrypt($validated['password']);
+        } else {
+            unset($validated['password']);
+        }
+
+        $user = User::find($id);
+        $user->update($validated);
+
+        return response()->json([
+            'message'   => 'Berhasil mengupdate user ',
+            'data'      => $user
+        ], 200);
     }
+
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        return response()->json([
+            'message'   => 'Berhasil menghapus user ',
+            'data'      => $user
+        ], 200);
     }
 }

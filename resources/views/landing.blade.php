@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Landing IoT</title>
+    <title>Landing Internet of Things</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -206,8 +206,6 @@
     <section class="overflow">
         <div class="container">
             <div class="row justify-content-center align-items-center">
-
-
                 <div class="col-lg-7 order-lg-3 order-1 mb-lg-0 mb-5">
                     <img src="images/iot 2.jpg" alt="Image placeholder" class="img-md-fluid">
                 </div>
@@ -236,32 +234,38 @@
                     </p>
                 </div>
                 <div class="col-md-6 ml-auto">
-                    <div class="row">
+                    <div class="row justify-content-end">
                         <div class="col-md-4">
                             <ul class="list-unstyled">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Company</a></li>
-                                <li><a href="#">Teachers</a></li>
-                                <li><a href="#">Courses</a></li>
-                                <li><a href="#">Categories</a></li>
+                                <li><a href="https://www.linkedin.com/in/nanar-tyrta-prayuga-9a8444296/" class="nav-link">About Us</a>
+                                </li>
+                                <li><a href="#" class="nav-link">Contact</a></li>
+                                <li><a href="https://arkatama.id/articles/" class="nav-link">Artikel</a></li>
+                                <li><a href="https://arkatama.id/portofolio/" class="nav-link">Portofolio</a></li>
+                                <br>
+                                <ul class="list-unstyled d-flex social-icons" style="margin-left: -50px;">
+                                    <li class="mr-3"><a href="https://www.linkedin.com/in/nanar-tyrta-prayuga-9a8444296/" class="nav-link" target="_blank"><i
+                                                class="bi bi-linkedin fs-2"></i></a></li>
+                                    <li class="mr-3"><a href="https://www.youtube.com/watch?v=7RjcCLVNVLo" class="nav-link" target="_blank"><i
+                                                class="bi bi-youtube fs-2"></i></a></li>
+                                    <li class="mr-3"><a
+                                            href="https://x.com/MasterNTP_?t=y0NBqEFnufWUS1VoBLIJMw&s=09"
+                                            class="nav-link" target="_blank"><i class="bi bi-twitter"></i></a></li>
+                                    <li class="mr-3"><a href="#" class="nav-link" target="_blank"><i
+                                                class="bi bi-facebook"></i></a></li>
+                                    <li class="mr-3"><a href="https://bardi.co.id/alexa-amazon-echo/" class="nav-link" target="_blank"><i
+                                                class="bi bi-whatsapp"></i></a></li>
+                                    <li class="mr-3"><a href="" class="nav-link" target="_blank"><i
+                                                class="bi bi-globe2"></i></i></a></li>
+                                </ul>
+                                </br>
                             </ul>
                         </div>
                         <div class="col-md-4">
                             <ul class="list-unstyled">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Company</a></li>
-                                <li><a href="#">Teachers</a></li>
-                                <li><a href="#">Courses</a></li>
-                                <li><a href="#">Categories</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <ul class="list-unstyled">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Company</a></li>
-                                <li><a href="#">Teachers</a></li>
-                                <li><a href="#">Courses</a></li>
-                                <li><a href="#">Categories</a></li>
+                                <a href="{{ route('login') }}" class="nav-link">Login</a>
+                                <a href="{{ route('register') }}" class="nav-link">Register</a>
+                                <li><a href="#"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -273,9 +277,8 @@
                         Copyright &copy;
                         <script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i
-                            class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                            target="_blank">Nanar.Tp.W</a>
+                        </script> All rights reserved | Nanar.Tp.Web.id <i class=""
+                            aria-hidden=""></i> <a href="" target="_blank"></a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                 </div>
@@ -300,6 +303,12 @@
     <script src="js/jquery.waypoints.min.js"></script>
     <script src="js/jquery.stellar.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css"
+        rel="stylesheet">
 
     <script src="js/main-landing.js"></script>
 </body>
