@@ -1,4 +1,4 @@
-@extends('layouts.Dashboard')
+@extends('layouts.dashboard')
 
 @section('isi content')
 <div class="container-fluid pt-4 px-4">
