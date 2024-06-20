@@ -3,7 +3,7 @@
 @section('isi content')
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
- {{-- SensorRain --}}
+{{-- SensorRain --}}
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-secondary rounded h-100 p-4">
                     <h6 class="mb-4">Sensor Rain</h6>
@@ -173,11 +173,6 @@
         </div>
     </div>
 
-@endsection
-
-
-
-@push('scripts')
     <script>
         function toggleTable(tableId, buttonId) {
             var fullTable = document.getElementById(tableId);
@@ -192,4 +187,4 @@
             }
         }
     </script>
-@endpush
+@endsection

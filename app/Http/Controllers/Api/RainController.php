@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Rain;
-
+use App\Service\WaNotifService;
 use Illuminate\Http\Request;
 
 class RainController extends Controller
@@ -43,6 +43,10 @@ class RainController extends Controller
             'value' => $value,
             'weather' => $weather
         ]);
+
+
+        WaNotifService::notifikasiSensorMassal
+        ($request->value, 'rain');
 
         // Mengembalikan response dalam format JSON
         return response()->json([

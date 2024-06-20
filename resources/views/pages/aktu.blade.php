@@ -13,6 +13,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-sm-6 col-xl-3">
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                 <i class="bi bi-lightbulb fa-3x text-primary"></i>
@@ -23,6 +24,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-sm-6 col-xl-3">
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                 <i class="bi bi-lightbulb fa-3x text-primary"></i>
@@ -33,6 +35,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-sm-6 col-xl-3">
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                 <i class="bi bi-volume-up fa-3x text-primary"></i>
@@ -177,32 +180,26 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const btnOn = document.querySelector('.btn-on');
-        const btnOff = document.querySelector('.btn-off');
+        const buttons = document.querySelectorAll('.btn-on, .btn-off');
 
-        btnOn.addEventListener('click', function() {
-            // Send request to turn on the lamp
-            sendRequest('on');
-        });
-
-        btnOff.addEventListener('click', function() {
-            // Send request to turn off the lamp
-            sendRequest('off');
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const status = button.getAttribute('data-status');
+                sendRequest(status);
+            });
         });
 
         function sendRequest(status) {
-            // You can send an AJAX request to your backend here to control the lamp
-            // Example AJAX request with Fetch API:
-            fetch('/lamp-control', {
+            fetch("{{ route('api.sensors.lamps.index') }}", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    // Add any necessary headers here
+
                 },
                 body: JSON.stringify({ status: status })
             })
             .then(response => {
-                // Handle the response
+                            // Handle the response
                 if (response.ok) {
                     console.log('Lamp control successful');
                 } else {

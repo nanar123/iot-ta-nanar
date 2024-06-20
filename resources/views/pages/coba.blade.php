@@ -295,7 +295,7 @@
 
                 series: [{
                     name: 'monitoringGas',
-                    data: [80],
+                    data: [0],
                     tooltip: {
                         valueSuffix: 'ppm'
                     },
@@ -326,6 +326,7 @@
                 }]
 
             });
+
 
             chartRain = new Highcharts.Chart({
 
@@ -382,7 +383,7 @@
 
                 series: [{
                     name: 'monitoringRain',
-                    data: [20],
+                    data: [0],
                     tooltip: {
                         valueSuffix: 'mm'
                     },

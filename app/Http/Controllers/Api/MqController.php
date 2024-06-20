@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mq;
+use App\Service\WaNotifService;
 use Illuminate\Http\Request;
 
 class MqController extends Controller
@@ -44,6 +45,11 @@ class MqController extends Controller
             'value' => $request->input('value'),
             'status' => $status
         ]);
+
+
+        WaNotifService::notifikasiSensorMassal
+        ($request->value, 'gas');
+
 
         return response()->json([
             'data' => $data,

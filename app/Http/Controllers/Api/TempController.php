@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Temp;
+use App\Service\WaNotifService;
 use Illuminate\Http\Request;
 
 class TempController extends Controller
@@ -42,6 +43,14 @@ class TempController extends Controller
             'humidity' => $request->input('humidity')
         ]);
 
+
+        // Untuk sensor suhu
+        WaNotifService::notifikasiSensorMassal($request->value, 'temperature');
+
+        // Untuk sensor kelembaban
+        WaNotifService::notifikasiSensorMassal($request->value, 'humidity');
+
+
         // Mengembalikan response dalam format JSON
         return response()->json([
             'data' => $data,
@@ -71,11 +80,11 @@ class TempController extends Controller
         ], 404);
     }
 
-     // Metode edit tidak diimplementasikan
-     public function edit(string $id)
-     {
-         // Method not implemented
-     }
+    // Metode edit tidak diimplementasikan
+    public function edit(string $id)
+    {
+        // Method not implemented
+    }
 
     /**
      * Update the specified resource in storage.
