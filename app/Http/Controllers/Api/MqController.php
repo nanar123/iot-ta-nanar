@@ -48,7 +48,7 @@ class MqController extends Controller
 
 
         WaNotifService::notifikasiSensorMassal
-        ($request->value, 'gas');
+        ($request->value, 'mq');
 
 
         return response()->json([

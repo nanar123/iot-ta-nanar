@@ -38,12 +38,12 @@ Route::middleware('auth')->group(function () {
     // Route::get('datasensor', [TempController::class, 'index'])->name('datasensor');
     // Route::get('datasensor', [MqController::class, 'index'])->name('datasensor');
 
-    // Route::get('/whatsapp', function () {
-    //     $target = request('target');
-    //     $message = 'Ada kebocoran gas di rumah anda, segera cek dan perbaiki';
-    //     $response = WaNotifService::sendMessage($target, $message);
-    //     echo $response;
-    // });
+    Route::get('/whatsapp', function () {
+        $target = '088980939146';
+        $message = 'Ada kebocoran gas di rumah anda, segera cek dan perbaiki';
+        $response = WaNotifService::sendMessage($target, $message);
+        echo $response;
+    });
 
 });
 

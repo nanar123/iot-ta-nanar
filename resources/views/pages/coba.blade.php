@@ -5,12 +5,17 @@
         <div class="row g-4">
             <div class="col-sm-12">
                 <div class="bg-secondary text-center rounded p-4">
-                    <h4 class="card-title">Monitoring Temperature </h4>
+                    <h4 class="card-title">Monitoring Temperature</h4>
                     <br>
-                    <div id="chartsContainer" style="display: flex; justify-content: space-between;">
-                        <div id="monitoringSuhu" style="width: 48%; height: 400px;"></div>
-                        <div id="monitoringHum" style="width: 48%; height: 400px;"></div>
-                    </div>
+                    <div id="monitoringSuhu" style="width: 100%; height: 300px;"></div>
+                    <br>
+                    <p class="card-text"><small class="text-muted">Terakhir diubah 3 menit lalu</small></p>
+                </div>
+
+                <div class="bg-secondary text-center rounded p-4">
+                    <h4 class="card-title">Monitoring Humidity</h4>
+                    <br>
+                    <div id="monitoringHum" style="width: 100%; height: 300px;"></div>
                     <br>
                     <p class="card-text"><small class="text-muted">Terakhir diubah 3 menit lalu</small></p>
                 </div>

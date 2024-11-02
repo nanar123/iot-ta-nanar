@@ -49,6 +49,8 @@ class WaNotifService
         return $response->body();
     }
 
+
+
     public static function formatMessage($message)
     {
         $message .= PHP_EOL;
@@ -56,6 +58,8 @@ class WaNotifService
         $message .= 'Dikirimkan pada tanggal ' . date('Y-m-d H:i:s') . ' oleh IoT Panel Arkatama';
         return $message;
     }
+
+
 
     public static function notifikasiSensor($user, $nilaiSensor, $jenisSensor)
     {
@@ -90,14 +94,15 @@ class WaNotifService
     }
 
 
+
     public static function notifikasiSensorMassal($nilaiSensor, $jenisSensor)
     {
         // Nilai maksimal untuk berbagai sensor
         $nilaiMaksimal = [
-            'gas' => 300, // contoh nilai maksimal untuk sensor gas
-            'rain' => 1, // contoh nilai maksimal untuk sensor hujan
-            'temperature' => 30, // contoh nilai maksimal untuk suhu
-            'humidity' => 32 // contoh nilai maksimal untuk kelembaban
+            'mq' => 300,            // contoh nilai maksimal untuk sensor gas
+            'rain' => 1,            // contoh nilai maksimal untuk sensor hujan
+            'temperature' => 30,    // contoh nilai maksimal untuk suhu
+            'humidity' => 32        // contoh nilai maksimal untuk kelembaban
         ];
 
         $durasiPesan = 1; // contoh dalam menit

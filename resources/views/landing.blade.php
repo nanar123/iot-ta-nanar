@@ -253,6 +253,7 @@
                                             class="nav-link" target="_blank"><i class="bi bi-twitter"></i></a></li>
                                     <li class="mr-3"><a href="#" class="nav-link" target="_blank"><i
                                                 class="bi bi-facebook"></i></a></li>
+
                                     <li class="mr-3"><a href="https://bardi.co.id/alexa-amazon-echo/" class="nav-link" target="_blank"><i
                                                 class="bi bi-whatsapp"></i></a></li>
                                     <li class="mr-3"><a href="" class="nav-link" target="_blank"><i

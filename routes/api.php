@@ -25,30 +25,30 @@ Route::get('/user', function (Request $request) {
 // Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 // resource route
-Route::group(['as' => 'api.'], function ()  {
+Route::group(['as' => 'api.'], function () {
     Route::resource('users', UserController::class)
-    ->except(['create', 'edit']);
+        ->except(['create', 'edit']);
 
-    // Route::resource('sensors/mq', MqSensorController::class)
-    // ->names('sensors.mq');
+
 
     Route::resource('mqs', MqController::class)
-    ->names('sensors.mqs');
+        ->names('sensors.mqs');
 
     Route::resource('temps', TempController::class)
-    ->names('sensors.temps');
+        ->names('sensors.temps');
 
     Route::resource('rains', RainController::class)
-    ->names('sensors.rains');
+        ->names('sensors.rains');
 
     Route::resource('lamps', LampController::class)
-    ->names('sensors.lamps');
+        ->names('sensors.lamps');
 
     Route::resource('buzzers', BuzzerController::class)
-    ->names('sensors.buzzers');
+        ->names('sensors.buzzers');
 
     // Route::resource('datasensors', SensorController::class)
     // ->names('sensors.data');
 
-
+    // Route::resource('sensors/mq', MqSensorController::class)
+    // ->names('sensors.mq');
 });
