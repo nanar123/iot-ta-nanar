@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Temp extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $table = 'temps'; // Pastikan ini mengarah ke 'rains'
+
+    protected $fillable = ['temperature', 'humidity', 'created_at'];
 }

@@ -1,17 +1,21 @@
-<!-- Sale & Revenue Start -->
-<div class="container-fluid pt-4 px-4">
+@extends('layouts.dashboard')
+
+@section('isi content')
+<!--Card Start -->
+{{-- <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
-        <div class="col-sm-6 col-xl-3">
-            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-chart-line fa-3x text-primary"></i>
+       <div class="col-sm-6 col-xl-3">
+            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-cloud-rain fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">Today Sale</p>
-                    <h6 class="mb-0">$1234</h6>
+                    <p class="mb-2">Total Jumlah Hujan</p>
+                    <h6 class="mb-0">{{ $jumlahData }}</h6> <!-- Menampilkan total jumlah hujan -->
                 </div>
             </div>
         </div>
+
         <div class="col-sm-6 col-xl-3">
-            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                 <i class="fa fa-chart-bar fa-3x text-primary"></i>
                 <div class="ms-3">
                     <p class="mb-2">Total Sale</p>
@@ -20,7 +24,7 @@
             </div>
         </div>
         <div class="col-sm-6 col-xl-3">
-            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                 <i class="fa fa-chart-area fa-3x text-primary"></i>
                 <div class="ms-3">
                     <p class="mb-2">Today Revenue</p>
@@ -29,7 +33,7 @@
             </div>
         </div>
         <div class="col-sm-6 col-xl-3">
-            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                 <i class="fa fa-chart-pie fa-3x text-primary"></i>
                 <div class="ms-3">
                     <p class="mb-2">Total Revenue</p>
@@ -38,227 +42,446 @@
             </div>
         </div>
     </div>
-</div>
-<!-- Sale & Revenue End -->
+</div> --}}
+<!-- Card End -->
 
 
-<!-- Sales Chart Start -->
-<div class="container-fluid pt-4 px-4">
-    <div class="row g-4">
-        <div class="col-sm-12 col-xl-6">
-            <div class="bg-secondary text-center rounded p-4">
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h6 class="mb-0">Worldwide Sales</h6>
-                    <a href="">Show All</a>
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12">
+                <div class="bg-light text-dark text-center rounded p-4">
+                    <h4 class="card-title">Monitoring Temperature</h4>
+                    <br>
+                    <div id="monitoringSuhu" style="width: 100%; height: 300px;"></div>
+                    <br>
+                    <p class="card-text"><small class="text-muted">Terakhir diubah 3 menit lalu</small></p>
                 </div>
-                <canvas id="worldwide-sales"></canvas>
+
+                <br>
+                <div class="bg-light text-center rounded p-4">
+                    <h4 class="card-title">Monitoring Humidity</h4>
+                    <br>
+                    <div id="monitoringHum" style="width: 100%; height: 300px;"></div>
+                    <br>
+                    <p class="card-text"><small class="text-muted">Terakhir diubah 3 menit lalu</small></p>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-12 col-xl-6">
-            <div class="bg-secondary text-center rounded p-4">
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h6 class="mb-0">Salse & Revenue</h6>
-                    <a href="">Show All</a>
-                </div>
-                <canvas id="salse-revenue"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Sales Chart End -->
 
-
-<!-- Recent Sales Start -->
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-secondary text-center rounded p-4">
-        <div class="d-flex align-items-center justify-content-between mb-4">
-            <h6 class="mb-0">Recent Salse</h6>
-            <a href="">Show All</a>
-        </div>
-        <div class="table-responsive">
-            <table class="table text-start align-middle table-bordered table-hover mb-0">
-                <thead>
-                    <tr class="text-white">
-                        <th scope="col"><input class="form-check-input" type="checkbox"></th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Invoice</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>01 Jan 2045</td>
-                        <td>INV-0123</td>
-                        <td>Jhon Doe</td>
-                        <td>$123</td>
-                        <td>Paid</td>
-                        <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                    </tr>
-                    <tr>
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>01 Jan 2045</td>
-                        <td>INV-0123</td>
-                        <td>Jhon Doe</td>
-                        <td>$123</td>
-                        <td>Paid</td>
-                        <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                    </tr>
-                    <tr>
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>01 Jan 2045</td>
-                        <td>INV-0123</td>
-                        <td>Jhon Doe</td>
-                        <td>$123</td>
-                        <td>Paid</td>
-                        <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                    </tr>
-                    <tr>
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>01 Jan 2045</td>
-                        <td>INV-0123</td>
-                        <td>Jhon Doe</td>
-                        <td>$123</td>
-                        <td>Paid</td>
-                        <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                    </tr>
-                    <tr>
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>01 Jan 2045</td>
-                        <td>INV-0123</td>
-                        <td>Jhon Doe</td>
-                        <td>$123</td>
-                        <td>Paid</td>
-                        <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<!-- Recent Sales End -->
-
-
-<!-- Widgets Start -->
-<div class="container-fluid pt-4 px-4">
-    <div class="row g-4">
-        <div class="col-sm-12 col-md-6 col-xl-4">
-            <div class="h-100 bg-secondary rounded p-4">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <h6 class="mb-0">Messages</h6>
-                    <a href="">Show All</a>
-                </div>
-                <div class="d-flex align-items-center border-bottom py-3">
-                    <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                    <div class="w-100 ms-3">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h6 class="mb-0">Jhon Doe</h6>
-                            <small>15 minutes ago</small>
+            <div class="col-sm-6 col-4">
+                <div class="col-sm-12">
+                    <div class="bg-light text-center rounded p-4">
+                        <h4 class="card-title">Monitoring Gass </h4>
+                        <br>
+                        <div id="chartsContainer">
+                            <div id="monitoringGas" style="width: %; height: px;"></div>
                         </div>
-                        <span>Short message goes here...</span>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center border-bottom py-3">
-                    <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                    <div class="w-100 ms-3">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h6 class="mb-0">Jhon Doe</h6>
-                            <small>15 minutes ago</small>
-                        </div>
-                        <span>Short message goes here...</span>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center border-bottom py-3">
-                    <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                    <div class="w-100 ms-3">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h6 class="mb-0">Jhon Doe</h6>
-                            <small>15 minutes ago</small>
-                        </div>
-                        <span>Short message goes here...</span>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center pt-3">
-                    <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                    <div class="w-100 ms-3">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h6 class="mb-0">Jhon Doe</h6>
-                            <small>15 minutes ago</small>
-                        </div>
-                        <span>Short message goes here...</span>
+                        <br>
+                        <p class="card-text"><small class="text-muted">Terakhir diubah 3 menit lalu</small></p>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-xl-4">
-            <div class="h-100 bg-secondary rounded p-4">
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h6 class="mb-0">Calender</h6>
-                    <a href="">Show All</a>
-                </div>
-                <div id="calender"></div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-xl-4">
-            <div class="h-100 bg-secondary rounded p-4">
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h6 class="mb-0">To Do List</h6>
-                    <a href="">Show All</a>
-                </div>
-                <div class="d-flex mb-2">
-                    <input class="form-control bg-dark border-0" type="text" placeholder="Enter task">
-                    <button type="button" class="btn btn-primary ms-2">Add</button>
-                </div>
-                <div class="d-flex align-items-center border-bottom py-2">
-                    <input class="form-check-input m-0" type="checkbox">
-                    <div class="w-100 ms-3">
-                        <div class="d-flex w-100 align-items-center justify-content-between">
-                            <span>Short task goes here...</span>
-                            <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+
+            <div class="col-sm-6 col-4">
+                <div class="col-sm-12">
+                    <div class="bg-light text-center rounded p-4">
+                        <h4 class="card-title">Monitoring Hujan </h4>
+                        <br>
+                        <div id="chartsContainer">
+                            <div id="monitoringRain" style="width: %; height: px;"></div>
                         </div>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center border-bottom py-2">
-                    <input class="form-check-input m-0" type="checkbox">
-                    <div class="w-100 ms-3">
-                        <div class="d-flex w-100 align-items-center justify-content-between">
-                            <span>Short task goes here...</span>
-                            <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center border-bottom py-2">
-                    <input class="form-check-input m-0" type="checkbox" checked>
-                    <div class="w-100 ms-3">
-                        <div class="d-flex w-100 align-items-center justify-content-between">
-                            <span><del>Short task goes here...</del></span>
-                            <button class="btn btn-sm text-primary"><i class="fa fa-times"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center border-bottom py-2">
-                    <input class="form-check-input m-0" type="checkbox">
-                    <div class="w-100 ms-3">
-                        <div class="d-flex w-100 align-items-center justify-content-between">
-                            <span>Short task goes here...</span>
-                            <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center pt-2">
-                    <input class="form-check-input m-0" type="checkbox">
-                    <div class="w-100 ms-3">
-                        <div class="d-flex w-100 align-items-center justify-content-between">
-                            <span>Short task goes here...</span>
-                            <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                        </div>
+                        <br>
+                        <p class="card-text"><small class="text-muted">Terakhir diubah 3 menit lalu</small></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Widgets End -->
+@endsection
+
+@push('scripts')
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <script>
+        let chartSuhu;
+        let chartHum;
+        let chartGas;
+        let chartRain;
+        const updateInterval = 5000;
+
+        async function requestSuhu() {
+            // load data
+            const result = await fetch("{{ route('api.sensors.temps.index') }}");
+            // const result = await fetch("{{ route('api.sensors.rains.index') }}");
+            // const result = await fetch("{{ route('api.sensors.temps.index') }}");
+
+            if (result.ok) {
+                // cek jika berhasil
+                const data = await result.json();
+                const sensorData = data.data;
+
+                // parse data
+                const date = sensorData[0].created_at;
+                const value = sensorData[0].temperature;
+
+                // membuat point
+                const point = [new Date(date).getTime(), Number(value)];
+
+                // menambahkan point ke chart
+                const series = chartSuhu.series[0],
+                    shift = series.data.length > 20;
+                // shift if the series is
+                // longer than 20
+
+                // add the point
+                chartSuhu.series[0].addPoint(point, true, shift);
+
+                setTimeout(requestSuhu, 5000); // 1000ms = 1 detik
+            }
+        }
+
+        async function requestHum() {
+            // load data
+            const result = await fetch("{{ route('api.sensors.temps.index') }}");
+
+            if (result.ok) {
+                // cek jika berhasil
+                const data = await result.json();
+                const sensorData = data.data;
+
+                // parse data
+                const date = sensorData[0].created_at;
+                const value = sensorData[0].humidity;
+
+                // membuat point
+                const point = [new Date(date).getTime(), Number(value)];
+
+                // menambahkan point ke chart
+                const series = chartHum.series[0],
+                    shift = series.data.length > 20;
+                // shift if the series is
+                // longer than 20
+
+                // add the point
+                chartHum.series[0].addPoint(point, true, shift);
+
+                // refresh data setiap x detik
+                setTimeout(requestHum, 3000); //1000ms = 1 detik
+            }
+        }
+
+        async function requestGas() {
+            // load data
+            const result = await fetch("{{ route('api.sensors.mqs.index') }}");
+
+            if (result.ok) {
+                // cek jika berhasil
+                const data = await result.json();
+                const sensorData = data.data;
+
+                // parse data
+                const value = sensorData[0].value;
+
+                if (chartGas && !chartGas.renderer.forExport) {
+                    const point = chartGas.series[0].points[0];
+                    point.update(Number(value));
+                }
+
+                setTimeout(requestGas, updateInterval);
+            }
+        }
+
+        async function requestRain() {
+            // load data
+            const result = await fetch("{{ route('api.sensors.rains.index') }}");
+
+            if (result.ok) {
+                //cek jika berhasil
+                const data = await result.json();
+                const sensorData = data.data;
+
+                // parse data
+                const value = sensorData[0].value;
+
+                if (chartRain && !chartRain.renderer.forExport) {
+                    const point = chartRain.series[0].points[0];
+                    point.update(Number(value));
+                }
+
+                setTimeout(requestRain, updateInterval);
+            }
+        }
+
+
+        window.addEventListener('load', function() {
+            chartSuhu = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'monitoringSuhu',
+                    defaultSeriesType: 'spline',
+                    events: {
+                        load: requestSuhu
+                    }
+                },
+                title: {
+                    text: 'Live Suhu'
+                },
+                time: {
+                    timezone: 'Asia/Jakarta', // Atur timezone Jakarta
+                    useUTC: false // Nonaktifkan UTC
+                },
+                xAxis: {
+                    type: 'datetime',
+                    tickPixelInterval: 100,
+                    maxZoom: 10 * 1000
+                },
+                yAxis: {
+                    minPadding: 0.2,
+                    maxPadding: 0.2,
+                    title: {
+                        text: 'Value Suhu',
+                        margin: 10
+                    }
+                },
+                series: [{
+                    name: 'Suhu',
+                    data: []
+                }]
+            });
+
+
+            chartHum = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'monitoringHum',
+                    defaultSeriesType: 'spline',
+                    events: {
+                        load: requestHum
+                    }
+                },
+                time: {
+                    timezone: 'Asia/Jakarta', // Atur timezone Jakarta
+                    useUTC: false // Nonaktifkan UTC
+                },
+                title: {
+                    text: 'Live Kelembaban'
+                },
+                xAxis: {
+                    type: 'datetime',
+                    tickPixelInterval: 100,
+                    maxZoom: 10 * 1000
+                },
+                yAxis: {
+                    minPadding: 0.2,
+                    maxPadding: 0.2,
+                    title: {
+                        text: 'Value Kelembaban',
+                        margin: 10
+                    }
+                },
+                series: [{
+                    name: 'Kelembaban',
+                    data: []
+                }]
+            });
+
+
+            chartGas = new Highcharts.Chart({
+
+                chart: {
+                    renderTo: 'monitoringGas',
+                    type: 'gauge',
+                    plotBackgroundColor: null,
+                    plotBackgroundImage: null,
+                    plotBorderWidth: 0,
+                    plotShadow: false,
+                    height: '80%',
+                    events: {
+                        load: requestGas
+                    }
+                },
+
+                title: {
+                    text: 'MqGass'
+                },
+
+                pane: {
+                    startAngle: -90,
+                    endAngle: 89.9,
+                    background: null,
+                    center: ['50%', '75%'],
+                    size: '110%'
+                },
+
+                // the value axis
+                yAxis: {
+                    min: 0,
+                    max: 300,
+                    tickPixelInterval: 72,
+                    tickPosition: 'inside',
+                    tickColor: Highcharts.defaultOptions.chart.backgroundColor || '#FFFFFF',
+                    tickLength: 20,
+                    tickWidth: 2,
+                    minorTickInterval: null,
+                    labels: {
+                        distance: 20,
+                        style: {
+                            fontSize: '14px'
+                        }
+                    },
+                    lineWidth: 0,
+                    plotBands: [{
+                        from: 0,
+                        to: 130,
+                        color: '#55BF3B', // green
+                        thickness: 20,
+                        borderRadius: '50%'
+                    }, {
+                        from: 130,
+                        to: 250,
+                        color: '#DDDF0D', // yellow
+                        thickness: 20
+                    }, {
+                        from: 250,
+                        to: 300,
+                        color: '#DF5353', // red
+                        thickness: 20,
+                        borderRadius: '50%'
+                    }]
+                },
+
+                series: [{
+                    name: 'monitoringGas',
+                    data: [0],
+                    tooltip: {
+                        valueSuffix: 'ppm'
+                    },
+                    dataLabels: {
+                        format: '{y} PPM',
+                        borderWidth: 0,
+                        color: (
+                            Highcharts.defaultOptions.title &&
+                            Highcharts.defaultOptions.title.style &&
+                            Highcharts.defaultOptions.title.style.color
+                        ) || '#333333',
+                        style: {
+                            fontSize: '16px'
+                        }
+                    },
+                    dial: {
+                        radius: '80%',
+                        backgroundColor: 'gray',
+                        baseWidth: 12,
+                        baseLength: '0%',
+                        rearLength: '0%'
+                    },
+                    pivot: {
+                        backgroundColor: 'gray',
+                        radius: 6
+                    }
+
+                }]
+
+            });
+
+
+            chartRain = new Highcharts.Chart({
+
+                chart: {
+                    renderTo: 'monitoringRain',
+                    type: 'gauge',
+                    plotBackgroundColor: null,
+                    plotBackgroundImage: null,
+                    plotBorderWidth: 0,
+                    plotShadow: false,
+                    height: '80%',
+                    events: {
+                        load: requestRain
+                    }
+                },
+
+                title: {
+                    text: 'Rain'
+                },
+
+                pane: {
+                    startAngle: -90,
+                    endAngle: 89.9,
+                    background: null,
+                    center: ['50%', '75%'],
+                    size: '110%'
+                },
+
+                // the value axis
+                yAxis: {
+                    min: 0,
+                    max: 100,
+                    tickPixelInterval: 72,
+                    tickPosition: 'inside',
+                    tickColor: Highcharts.defaultOptions.chart.backgroundColor || '#FFFFFF',
+                    tickLength: 20,
+                    tickWidth: 2,
+                    minorTickInterval: null,
+                    labels: {
+                        distance: 20,
+                        style: {
+                            fontSize: '14px'
+                        }
+                    },
+                    lineWidth: 0,
+                    plotBands: [{
+                        from: 0,
+                        to: 35,
+                        color: '#FFFF00', // yelloow
+                        thickness: 20,
+                        borderRadius: '50%'
+                    }, {
+                        from: 35,
+                        to: 65,
+                        color: '#00FFFF', // blue
+                        thickness: 20
+                    }, {
+                        from: 65,
+                        to: 100,
+                        color: '#0000FF', // blue
+                        thickness: 20,
+                        borderRadius: '50%'
+                    }]
+                },
+
+                series: [{
+                    name: 'monitoringRain',
+                    data: [0],
+                    tooltip: {
+                        valueSuffix: 'mm'
+                    },
+                    dataLabels: {
+                        format: '{y} MM',
+                        borderWidth: 0,
+                        color: (
+                            Highcharts.defaultOptions.title &&
+                            Highcharts.defaultOptions.title.style &&
+                            Highcharts.defaultOptions.title.style.color
+                        ) || '#333333',
+                        style: {
+                            fontSize: '16px'
+                        }
+                    },
+                    dial: {
+                        radius: '80%',
+                        backgroundColor: 'gray',
+                        baseWidth: 12,
+                        baseLength: '0%',
+                        rearLength: '0%'
+                    },
+                    pivot: {
+                        backgroundColor: 'gray',
+                        radius: 6
+                    }
+                }]
+            });
+        });
+    </script>
+@endpush

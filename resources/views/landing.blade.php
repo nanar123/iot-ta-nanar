@@ -237,11 +237,10 @@
                     <div class="row justify-content-end">
                         <div class="col-md-4">
                             <ul class="list-unstyled">
-                                <li><a href="https://www.linkedin.com/in/nanar-tyrta-prayuga-9a8444296/" class="nav-link">About Us</a>
-                                </li>
-                                <li><a href="#" class="nav-link">Contact</a></li>
-                                <li><a href="https://arkatama.id/articles/" class="nav-link">Artikel</a></li>
-                                <li><a href="https://arkatama.id/portofolio/" class="nav-link">Portofolio</a></li>
+                                <li><a href="https://www.linkedin.com/in/nanar-tyrta-prayuga-9a8444296/" class="nav-link">About Us</a></li>
+                                <li><a href="https://www.linkedin.com/in/nanar-tyrta-prayuga-9a8444296/" class="nav-link">Contact</a></li>
+                                <li><a href="https://www.linkedin.com/in/nanar-tyrta-prayuga-9a8444296/" class="nav-link">Artikel</a></li>
+                                <li><a href="https://www.linkedin.com/in/nanar-tyrta-prayuga-9a8444296/" class="nav-link">Portofolio</a></li>
                                 <br>
                                 <ul class="list-unstyled d-flex social-icons" style="margin-left: -50px;">
                                     <li class="mr-3"><a href="https://www.linkedin.com/in/nanar-tyrta-prayuga-9a8444296/" class="nav-link" target="_blank"><i
@@ -252,12 +251,7 @@
                                             href="https://x.com/MasterNTP_?t=y0NBqEFnufWUS1VoBLIJMw&s=09"
                                             class="nav-link" target="_blank"><i class="bi bi-twitter"></i></a></li>
                                     <li class="mr-3"><a href="#" class="nav-link" target="_blank"><i
-                                                class="bi bi-facebook"></i></a></li>
-
-                                    <li class="mr-3"><a href="https://bardi.co.id/alexa-amazon-echo/" class="nav-link" target="_blank"><i
-                                                class="bi bi-whatsapp"></i></a></li>
-                                    <li class="mr-3"><a href="" class="nav-link" target="_blank"><i
-                                                class="bi bi-globe2"></i></i></a></li>
+                                                class="bi bi-globe2"></i></a></li>
                                 </ul>
                                 </br>
                             </ul>
@@ -266,7 +260,7 @@
                             <ul class="list-unstyled">
                                 <a href="{{ route('login') }}" class="nav-link">Login</a>
                                 <a href="{{ route('register') }}" class="nav-link">Register</a>
-                                <li><a href="#"></a></li>
+
                             </ul>
                         </div>
                     </div>

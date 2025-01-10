@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class MqController extends Controller
 {
-    function index(){
-
-        $mqs = Mq::orderBy('value')->get();
-        $data['mqs'] = $mqs;
-        return view('pages.datasensor', $data);
+    public function index()
+    {
+        $mqs = Mq::orderBy('created_at', 'desc')->get(); // Urutkan data terbaru ke terlama
+        return view('pages.datasensor.datamq', compact('mqs'));
     }
+
 }

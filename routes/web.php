@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard', function () {
-    return view('pages.coba');
+    return view('pages.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
@@ -32,11 +32,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('aktu', [AktuController::class, 'index'])->name('aktu');
 
-    Route::get('datasensor', [SensorController::class, 'index'])->name('datasensor');
+    // Route::get('datasensor', [SensorController::class, 'index'])->name('datasensor');
 
-    // Route::get('datasensor', [RainController::class, 'index'])->name('datasensor');
-    // Route::get('datasensor', [TempController::class, 'index'])->name('datasensor');
-    // Route::get('datasensor', [MqController::class, 'index'])->name('datasensor');
+    Route::get('temps', [TempController::class, 'index'])->name('datasensor.datatemp');
+    Route::get('rains', [RainController::class, 'index'])->name('datasensor.datarain');
+    Route::get('mqs', [MqController::class, 'index'])->name('datasensor.datamq');
 
     Route::get('/whatsapp', function () {
         $target = '088980939146';
@@ -49,4 +49,4 @@ Route::middleware('auth')->group(function () {
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -31,12 +31,18 @@ class RainController extends Controller
     {
         // Validasi input request
         $request->validate([
-            'value' => 'required|in:0,1'
+            'value' => 'required|integer|min:0|max:100'
         ]);
 
         // Menentukan status berdasarkan nilai input
         $value = $request->input('value');
-        $weather = $value == 1 ? 'Hujan' : 'Cerah';
+        if ($value >= 0 && $value <= 35) {
+            $weather = 'Cerah';
+        } elseif ($value >= 36 && $value <= 65) {
+            $weather = 'Hujan Sedang';
+        } else {
+            $weather = 'Hujan';
+        }
 
         // Menyimpan data ke database
         $rain = Rain::create([
@@ -44,9 +50,8 @@ class RainController extends Controller
             'weather' => $weather
         ]);
 
-
-        WaNotifService::notifikasiSensorMassal
-        ($request->value, 'rain');
+        // Mengirim notifikasi
+        WaNotifService::notifikasiSensorMassal($value, 'rain');
 
         // Mengembalikan response dalam format JSON
         return response()->json([
@@ -54,6 +59,7 @@ class RainController extends Controller
             'message' => 'Data saved successfully'
         ], 201);
     }
+
 
     /**
      * Display the specified resource.

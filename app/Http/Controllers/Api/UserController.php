@@ -43,10 +43,10 @@ class UserController extends Controller
                 'required',
                 'min:8'
             ],
-            'role'  => [
-                'required',
-                'in:admin,user'
-            ],
+            // 'role'  => [
+            //     'required',
+            //     'in:admin,user'
+            // ],
             'phone_number'  => [
                 'nullable',
             ]
@@ -109,10 +109,10 @@ class UserController extends Controller
                 'nullable',
                 'min:8'
             ],
-            'role'  => [
-                'required',
-                'in:admin,user'
-            ],
+            // 'role'  => [
+            //     'required',
+            //     'in:admin,user'
+            // ],
             'phone_number'  => [
                 'nullable',
             ],

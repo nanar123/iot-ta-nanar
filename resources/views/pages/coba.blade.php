@@ -4,7 +4,7 @@
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
             <div class="col-sm-12">
-                <div class="bg-secondary text-center rounded p-4">
+                <div class="bg-light text-dark text-center rounded p-4">
                     <h4 class="card-title">Monitoring Temperature</h4>
                     <br>
                     <div id="monitoringSuhu" style="width: 100%; height: 300px;"></div>
@@ -12,7 +12,8 @@
                     <p class="card-text"><small class="text-muted">Terakhir diubah 3 menit lalu</small></p>
                 </div>
 
-                <div class="bg-secondary text-center rounded p-4">
+                <br>
+                <div class="bg-light text-center rounded p-4">
                     <h4 class="card-title">Monitoring Humidity</h4>
                     <br>
                     <div id="monitoringHum" style="width: 100%; height: 300px;"></div>
@@ -23,7 +24,7 @@
 
             <div class="col-sm-6 col-4">
                 <div class="col-sm-12">
-                    <div class="bg-secondary text-center rounded p-4">
+                    <div class="bg-light text-center rounded p-4">
                         <h4 class="card-title">Monitoring Gass </h4>
                         <br>
                         <div id="chartsContainer">
@@ -37,7 +38,7 @@
 
             <div class="col-sm-6 col-4">
                 <div class="col-sm-12">
-                    <div class="bg-secondary text-center rounded p-4">
+                    <div class="bg-light text-center rounded p-4">
                         <h4 class="card-title">Monitoring Hujan </h4>
                         <br>
                         <div id="chartsContainer">

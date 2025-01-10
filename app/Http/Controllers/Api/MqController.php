@@ -35,27 +35,39 @@ class MqController extends Controller
      */
     public function store(Request $request)
     {
+        // Validasi input request
         $request->validate([
-            'value' => 'required|numeric'
+            'value' => 'required|numeric|min:0|max:300'
         ]);
 
-        $status = $request->input('value') > 300 ? 'tinggi' : 'normal';
+        // Menentukan status berdasarkan nilai input
+        $value = $request->input('value');
+        if ($value >= 0 && $value <= 130) {
+            $status = 'normal';
+        } elseif ($value >= 131 && $value <= 250) {
+            $status = 'sedang';
+        } elseif ($value >= 251 && $value <= 300) {
+            $status = 'tinggi';
+        } else {
+            $status = 'tidak valid'; // Penanganan nilai di luar rentang, meskipun validasi sudah membatasi
+        }
 
+        // Menyimpan data ke database
         $data = Mq::create([
-            'value' => $request->input('value'),
+            'value' => $value,
             'status' => $status
         ]);
 
+        // Mengirim notifikasi
+        WaNotifService::notifikasiSensorMassal($value, 'mq');
 
-        WaNotifService::notifikasiSensorMassal
-        ($request->value, 'mq');
-
-
+        // Mengembalikan response dalam format JSON
         return response()->json([
             'data' => $data,
             'message' => 'Data saved successfully'
         ], 201);
     }
+
 
     /**
      * Display the specified resource.

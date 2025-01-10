@@ -7,10 +7,15 @@ use Illuminate\Http\Request;
 
 class RainController extends Controller
 {
-    function index(){
-        $rains = Rain::orderBy('created_at')->get(); // Mengambil data hujan dari model Rain
-        $data['rains'] = $rains; // Menyiapkan data hujan
+   public function index()
+    {
+        // Mengambil semua data hujan dan mengurutkannya dari yang terbaru
+        $rains = Rain::orderBy('created_at', 'desc')->get();
 
-        return view('pages.datasensor', $data); // Menampilkan view 'pages.rain.index' bersama dengan data hujan
+        // Menghitung jumlah data
+        $jumlahData = $rains->count();
+
+        // Mengembalikan view dengan data hujan dan jumlah data
+        return view('pages.datasensor.datarain', compact('rains', 'jumlahData'));
     }
 }

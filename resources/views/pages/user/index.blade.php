@@ -3,7 +3,7 @@
 @section('isi content')
     <!-- Recent Sales Start -->
     <div class="container-fluid pt-4 px-4">
-        <div class="bg-secondary text-center rounded p-4">
+        <div class="bg-light text-center rounded p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h4 class="mb-0">User List</h4>
                 <button type="button" class="btn btn-outline-primary m-2" data-bs-toggle="modal" data-bs-target="#addModal">
@@ -12,15 +12,15 @@
                 </button>
             </div>
             <div class="table-responsive">
-                <table class="table text-start align-middle table-bordered table-hover mb-0"
-                    style="background-color: #001f3f;">
+                <table id="table-user" class="table text-start align-middle table-success table-striped table-hover mb-0"
+                    style="background-color: #F3F6F9">
                     <thead>
-                        <tr class="text-white">
+                        <tr class="text-dark">
                             <th>No</th>
                             <th>Name</th>
                             <th>No Phone</th>
                             <th>Email</th>
-                            <th>Role</th>
+                            {{-- <th>Role</th> --}}
                             <th>Join Date</th>
                             <th>Action</th>
                         </tr>
@@ -33,25 +33,25 @@
                                 <td>
                                     @if ($user->phone_number == null)
                                         <span class="badge badge-secondary">
-                                            <i class="bi bi-telephone"></i></span>
+                                            <i class="bi bi-telephone" style="color: black;"></i></span>
                                     @else
                                         {{ $user->phone_number }}
                                     @endif
                                 </td>
                                 <td>{{ $user->email }}</td>
-                                <td>
+                                {{-- <td>
                                     @if ($user->role == 'admin')
                                         <span class="badge badge-primary">
-                                            <i class="bi bi-person-gear" style="color: white; font-size: 1.5em;"></i>
+                                            <i class="bi bi-person-gear" style="color: black; font-size: 1.5em;"></i>
                                         </span>
                                     @else
                                         <span class="badge badge-secondary">
-                                            <i class="bi bi-person" style="font-size: 1.5em;"></i>
+                                            <i class="bi bi-person" style="color: black; font-size: 1.5em;"></i>
                                         </span>
                                     @endif
-                                </td>
+                                </td> --}}
 
-                                <td>{{ $user->created_at->format('d M Y, H:i:s') }}</td>
+                                <td>{{ $user->created_at->timezone('Asia/Jakarta')->format('d M Y, H:i:s') }}</td>
 
                                 <td>
                                     <div class="flex align-items-center list-user-action">
@@ -103,13 +103,13 @@
                             <input required type="email" class="form-control" id="addEmail" aria-describedby="emailHelp">
                             <div id="emailHelp" class="form-text"></div>
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="addRole" class="form-label">Role</label>
                             <select class="form-control" id="addRole" name="role">
                                 <option value="admin">Admin</option>
                                 <option value="user" selected>User</option>
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="mb-3">
                             <label for="addPassword" class="form-label">Password</label>
                             <input required type="password" class="form-control" id="addPassword">
@@ -151,13 +151,13 @@
                                 aria-describedby="emailHelp">
                             <div id="emailHelp" class="form-text"></div>
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="editRole" class="form-label">Role</label>
                             <select class="form-control" id="editRole" name="role">
                                 <option value="admin">Admin</option>
                                 <option value="user">User</option>
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="mb-3">
                             <label for="editPassword" class="form-label">Password</label>
                             <input required type="password" class="form-control" id="editPassword">
@@ -172,9 +172,20 @@
     </div>
 @endsection
 
+@push('css')
+    <link rel="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
+@endpush
+
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+
+    <script>
+        new DataTable('#table-user');
+    </script>
 
     <script>
         let userId = null;
@@ -200,7 +211,7 @@
                 name: $('#addName').val(),
                 email: $('#addEmail').val(),
                 password: $('#addPassword').val(),
-                role: $('#addRole').val(),
+                // role: $('#addRole').val(),
                 phone_number: $('#addNoPhone').val(),
             };
 
@@ -233,7 +244,7 @@
                 name: $('#editName').val(),
                 email: $('#editEmail').val(),
                 password: $('#editPassword').val(),
-                role: $('#editRole').val(),
+                // role: $('#editRole').val(),
                 phone_number: $('#editNoPhone').val(),
                 _method: 'PUT'
 
@@ -327,7 +338,7 @@
                     // isi form editModal dengan data user
                     $('#editName').val(response.data.name);
                     $('#editEmail').val(response.data.email);
-                    $('#editRole').val(response.data.role);
+                    // $('#editRole').val(response.data.role);
                     $('#editNoPhone').val(response.data.phone_number);
 
                     // tampilkan modal editModal
@@ -342,3 +353,6 @@
         }
     </script>
 @endpush
+
+
+

@@ -101,7 +101,7 @@
                             </div>
 
                             <div class="credits">
-                                Designed by <a href="https://github.com/nanar123">nanartp.web.id</a>
+                                Designed by <a href="#">Nanar.Tp.Web.id</a>
                             </div>
                         </div>
                     </div>

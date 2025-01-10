@@ -7,10 +7,9 @@ use Illuminate\Http\Request;
 
 class TempController extends Controller
 {
-    function index(){
-
-        $temps = Temp::orderBy('Humidity')->get();
-        $data['temps'] = $temps;
-        return view('pages.datasensor', $data);
+    public function index()
+    {
+        $temps = Temp::orderBy('created_at', 'desc')->get(); // Urutkan data terbaru ke terlama
+        return view('pages.datasensor.datatemp', compact('temps'));
     }
 }
