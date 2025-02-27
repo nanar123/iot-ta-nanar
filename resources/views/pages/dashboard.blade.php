@@ -54,7 +54,7 @@
                     <br>
                     <div id="monitoringSuhu" style="width: 100%; height: 300px;"></div>
                     <br>
-                    <p class="card-text"><small class="text-muted">Terakhir diubah 3 menit lalu</small></p>
+                    <p class="card-text"><small class="text-muted">Terakhir diubah Chart Suhu</small></p>
                 </div>
 
                 <br>
@@ -63,7 +63,7 @@
                     <br>
                     <div id="monitoringHum" style="width: 100%; height: 300px;"></div>
                     <br>
-                    <p class="card-text"><small class="text-muted">Terakhir diubah 3 menit lalu</small></p>
+                    <p class="card-text"><small class="text-muted">Terakhir diubah Chart Kelembaban</small></p>
                 </div>
             </div>
 
@@ -76,7 +76,7 @@
                             <div id="monitoringGas" style="width: %; height: px;"></div>
                         </div>
                         <br>
-                        <p class="card-text"><small class="text-muted">Terakhir diubah 3 menit lalu</small></p>
+                        <p class="card-text"><small class="text-muted">Terakhir diubah Gauge Gas</small></p>
                     </div>
                 </div>
             </div>
@@ -90,7 +90,7 @@
                             <div id="monitoringRain" style="width: %; height: px;"></div>
                         </div>
                         <br>
-                        <p class="card-text"><small class="text-muted">Terakhir diubah 3 menit lalu</small></p>
+                        <p class="card-text"><small class="text-muted">Terakhir diubah Gauge Hujan</small></p>
                     </div>
                 </div>
             </div>
@@ -139,7 +139,7 @@
 
                 // add the point
                 chartSuhu.series[0].addPoint(point, true, shift);
-
+                // refresh data
                 setTimeout(requestSuhu, 5000); // 1000ms = 1 detik
             }
         }

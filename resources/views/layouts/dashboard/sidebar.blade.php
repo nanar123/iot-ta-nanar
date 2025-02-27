@@ -21,7 +21,7 @@
          <div class="navbar-nav w-100">
              <a href="{{ route('dashboard') }}"
                  class="nav-item nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                 <i class="fa fa-chart-bar me-2"></i>Charts
+                 <i class="fa fa-chart-bar me-2"></i>Dashboard
              </a>
 
              <div class="nav-item dropdown">
