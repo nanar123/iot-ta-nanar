@@ -118,8 +118,8 @@
                 <div class="icon"><span class="flaticon-interface"></span></div>
                 <div class="media-body">
                     <h3 class="mt-0">Audio learning</h3>
-                    <p>Harum, adipisci, aspernatur. Vero repudiandae quos ab debitis, fugiat culpa obcaecati,
-                        voluptatibus ad distinctio cum soluta fugit sed animi eaque?</p>
+                    <p>IoT brings convenience and fragrant innovation to our lives.
+                        However, in its implementation with increasingly widespread connectivity</p>
                 </div>
             </div>
         </div>
