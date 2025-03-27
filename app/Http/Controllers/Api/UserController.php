@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -24,52 +27,68 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store_user(Request $request)
     {
-        // mmebuat validasi
+        // Validate the incoming request data
         $validated = $request->validate([
-            'name'      => [
-                'required',
-                'string',
-                'min:3',
-                'max:255'
-            ],
-            'email'     => [
-                'required',
-                'email',
-                'unique:users,email'
-            ],
-            'password'  => [
-                'required',
-                'min:8'
-            ],
-            // 'role'  => [
-            //     'required',
-            //     'in:admin,user'
-            // ],
-            'phone_number'  => [
-                'nullable',
-            ]
-            // 'password_confirmation' => [
-            //     'required',
-            //     'same:password'
-            // ]
+            'name' => 'required|string|min:3|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
+            'phone_number' => 'nullable'
         ]);
 
-        // membuat user baru
+        // Hash the password before storing it
+        $validated['password'] = Hash::make($validated['password']);
+
+        // Create a new user with the validated data
         $user = User::create($validated);
 
-        return response()->json([
-            'message'   => 'Berhasil menambahkan user baru',
-            'data'      => $user
-        ], 201);
+        // Generate a token for the user
+        $token = $user->createToken('YourAppName')->plainTextToken;
 
+        // Return a JSON response indicating success
+        return response()->json([
+            'message' => 'Berhasil menambahkan user baru',
+            'data' => $user->makeHidden(['password']), // Hide the password
+            'token' => $token // Include the token in the response
+        ], 201);
     }
+
+
+    // Login_User
+    public function login_user(Request $request)
+    {
+        // Validasi input pengguna
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Cari pengguna berdasarkan email
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json([
+                'message' => 'The provided credentials are incorrect.'
+            ], 401);
+        }
+
+        // Buat token baru
+        $token = $user->createToken('YourAppName')->plainTextToken;
+
+        return response()->json([
+            'message' => 'Login successful',
+            'token' => $token,
+            'user' => $user
+        ]);
+    }
+
+
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show_user(string $id)
     {
         $user = User::find($id);
         return response()->json([
@@ -77,6 +96,8 @@ class UserController extends Controller
             'data'      => $user
         ], 201);
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -140,10 +161,10 @@ class UserController extends Controller
 
 
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    // /**
+    //  * Remove the specified resource from storage.
+    //  */
+    public function destroy_user(string $id)
     {
         $user = User::find($id);
         $user->delete();
@@ -151,6 +172,22 @@ class UserController extends Controller
         return response()->json([
             'message'   => 'Berhasil menghapus user ',
             'data'      => $user
+        ], 200);
+    }
+
+
+
+    public function logout_user(Request $request)
+    {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        // Revoke the current access token
+        $request->user()->currentAccessToken()->delete();
+
+        // Return a response indicating successful logout
+        return response()->json([
+            'message' => 'Logout Successfully !!!'
         ], 200);
     }
 }

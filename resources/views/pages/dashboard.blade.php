@@ -1,8 +1,8 @@
 @extends('layouts.dashboard')
 
 @section('isi content')
-<!--Card Start -->
-{{-- <div class="container-fluid pt-4 px-4">
+    <!--Card Start -->
+    {{-- <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
        <div class="col-sm-6 col-xl-3">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
@@ -43,7 +43,7 @@
         </div>
     </div>
 </div> --}}
-<!-- Card End -->
+    <!-- Card End -->
 
 
     <div class="container-fluid pt-4 px-4">
@@ -114,107 +114,153 @@
         const updateInterval = 5000;
 
         async function requestSuhu() {
-            // load data
-            const result = await fetch("{{ route('api.sensors.temps.index') }}");
-            // const result = await fetch("{{ route('api.sensors.rains.index') }}");
-            // const result = await fetch("{{ route('api.sensors.temps.index') }}");
+            try {
+                const result = await fetch("{{ route('temps.index') }}");
 
-            if (result.ok) {
-                // cek jika berhasil
+                if (!result.ok) throw new Error("Gagal mengambil data");
+
                 const data = await result.json();
                 const sensorData = data.data;
 
-                // parse data
+                if (!sensorData || sensorData.length === 0) return;
+
                 const date = sensorData[0].created_at;
                 const value = sensorData[0].temperature;
 
-                // membuat point
+                if (!date || isNaN(value)) return;
+
                 const point = [new Date(date).getTime(), Number(value)];
 
-                // menambahkan point ke chart
-                const series = chartSuhu.series[0],
-                    shift = series.data.length > 20;
-                // shift if the series is
-                // longer than 20
+                // Ambil data lama dari localStorage
+                let storedData = JSON.parse(localStorage.getItem("chartData")) || [];
+                storedData.push(point);
 
-                // add the point
-                chartSuhu.series[0].addPoint(point, true, shift);
-                // refresh data
-                setTimeout(requestSuhu, 5000); // 1000ms = 1 detik
+                // Batasi jumlah data agar tidak terlalu besar
+                if (storedData.length > 25) storedData.shift();
+
+                // Simpan kembali ke localStorage
+                localStorage.setItem("chartData", JSON.stringify(storedData));
+
+                // Pastikan chart sudah ada sebelum update
+                if (chartSuhu && chartSuhu.series.length > 0) {
+                    chartSuhu.series[0].setData(storedData, true);
+                }
+
+                setTimeout(requestSuhu, 5000);
+            } catch (error) {
+                console.error("Error mengambil data suhu:", error);
+                setTimeout(requestSuhu, 5000);
             }
         }
 
-        async function requestHum() {
-            // load data
-            const result = await fetch("{{ route('api.sensors.temps.index') }}");
 
-            if (result.ok) {
-                // cek jika berhasil
+        async function requestHum() {
+            try {
+                const result = await fetch("{{ route('temps.index') }}");
+
+                if (!result.ok) throw new Error("Gagal mengambil data");
+
                 const data = await result.json();
                 const sensorData = data.data;
 
-                // parse data
+                if (!sensorData || sensorData.length === 0) return;
+
                 const date = sensorData[0].created_at;
                 const value = sensorData[0].humidity;
 
-                // membuat point
+                if (!date || isNaN(value)) return;
+
                 const point = [new Date(date).getTime(), Number(value)];
 
-                // menambahkan point ke chart
-                const series = chartHum.series[0],
-                    shift = series.data.length > 20;
-                // shift if the series is
-                // longer than 20
+                // Ambil data lama dari localStorage
+                let storedData = JSON.parse(localStorage.getItem("chartHumData")) || [];
+                storedData.push(point);
 
-                // add the point
-                chartHum.series[0].addPoint(point, true, shift);
+                // Batasi jumlah data agar tidak terlalu besar
+                if (storedData.length > 25) storedData.shift();
 
-                // refresh data setiap x detik
-                setTimeout(requestHum, 3000); //1000ms = 1 detik
+                // Simpan kembali ke localStorage
+                localStorage.setItem("chartHumData", JSON.stringify(storedData));
+
+                // Pastikan chart sudah ada sebelum update
+                if (chartHum && chartHum.series.length > 0) {
+                    chartHum.series[0].setData(storedData, true);
+                }
+
+                setTimeout(requestHum, 5000);
+            } catch (error) {
+                console.error("Error mengambil data humidity:", error);
+                setTimeout(requestHum, 5000);
             }
         }
 
-        async function requestGas() {
-            // load data
-            const result = await fetch("{{ route('api.sensors.mqs.index') }}");
 
-            if (result.ok) {
-                // cek jika berhasil
+        async function requestGas() {
+            try {
+                const result = await fetch("{{ route('mqs.index') }}");
+
+                if (!result.ok) throw new Error("Gagal mengambil data");
+
                 const data = await result.json();
                 const sensorData = data.data;
 
-                // parse data
-                const value = sensorData[0].value;
+                if (!sensorData || sensorData.length === 0) return;
 
-                if (chartGas && !chartGas.renderer.forExport) {
+                const value = sensorData[0].value;
+                if (isNaN(value)) return;
+
+                // Simpan nilai terbaru di localStorage
+                localStorage.setItem("lastGasValue", value);
+
+                // Perbarui chart jika tersedia
+                if (chartGas && chartGas.series.length > 0) {
                     const point = chartGas.series[0].points[0];
-                    point.update(Number(value));
+                    if (point) point.update(Number(value));
                 }
 
+                setTimeout(requestGas, updateInterval);
+            } catch (error) {
+                console.error("Error mengambil data gas:", error);
                 setTimeout(requestGas, updateInterval);
             }
         }
 
-        async function requestRain() {
-            // load data
-            const result = await fetch("{{ route('api.sensors.rains.index') }}");
 
-            if (result.ok) {
-                //cek jika berhasil
+        async function requestRain() {
+            try {
+                const result = await fetch("{{ route('rains.index') }}");
+
+                if (!result.ok) throw new Error("Gagal mengambil data");
+
                 const data = await result.json();
                 const sensorData = data.data;
 
-                // parse data
-                const value = sensorData[0].value;
+                if (!sensorData || sensorData.length === 0) return;
 
-                if (chartRain && !chartRain.renderer.forExport) {
+                const value = sensorData[0].value;
+                if (isNaN(value)) return;
+
+                // Simpan nilai terbaru di localStorage
+                localStorage.setItem("lastRainValue", value);
+
+                // Perbarui chart jika tersedia
+                if (chartRain && chartRain.series.length > 0) {
                     const point = chartRain.series[0].points[0];
-                    point.update(Number(value));
+                    if (point) point.update(Number(value));
                 }
 
                 setTimeout(requestRain, updateInterval);
+            } catch (error) {
+                console.error("Error mengambil data hujan:", error);
+                setTimeout(requestRain, updateInterval);
             }
         }
+
+
+
+
+
+
 
 
         window.addEventListener('load', function() {

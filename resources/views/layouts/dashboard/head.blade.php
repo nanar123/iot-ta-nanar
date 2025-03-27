@@ -29,9 +29,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
-        /* Mengubah warna background toastr menjadi hijau */
+        /* Mengubah warna background toastr untuk sukses menjadi hijau */
         #toast-container > .toast-success {
             background-color: #28a745 !important; /* Warna hijau Bootstrap */
+            color: white !important;
+        }
+
+        /* Mengubah warna background toastr untuk error menjadi merah */
+        #toast-container > .toast-error {
+            background-color: red !important;
             color: white !important;
         }
     </style>

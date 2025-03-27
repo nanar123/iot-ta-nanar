@@ -198,13 +198,13 @@
         });
 
         $('#editModal').on('show.bs.modal', function(e) {
-            $('#addForm').trigger('reset');
+            $('#editForm').trigger('reset');
             $('#editForm input').removeClass('is-invalid');
             $('#editForm .invalid-feedback').remove();
         });
 
         function createUser() {
-            const url = "{{ route('api.users.store') }}";
+            const url = "{{ route('users.store') }}";
 
             // Ambil form data
             let data = {
@@ -223,8 +223,8 @@
 
                     // Reload halaman setelah 3 detik
                     setTimeout(() => {
-                        location.reload();
-                    }, 3000);
+                        window.location.reload(true);
+                    }, 1000);
                 })
                 .fail((error) => {
                     // Ambil response error
@@ -236,7 +236,7 @@
         }
 
         function editUser() {
-            let url = "{{ route('api.users.update', ':userId') }}";
+            let url = "{{ route('users.update', ':userId') }}";
             url = url.replace(':userId', userId);
 
             // Ambil form data
@@ -244,7 +244,6 @@
                 name: $('#editName').val(),
                 email: $('#editEmail').val(),
                 password: $('#editPassword').val(),
-                // role: $('#editRole').val(),
                 phone_number: $('#editNoPhone').val(),
                 _method: 'PUT'
 
@@ -258,8 +257,8 @@
 
                     // Reload halaman setelah 3 detik
                     setTimeout(() => {
-                        location.reload();
-                    }, 3000);
+                         window.location.reload(true);
+                    }, 1000);
                 })
                 .fail((error) => {
                     // Ambil response error
@@ -307,7 +306,7 @@
             }).then((result) => {
 
                 if (result.isConfirmed) {
-                    let url = "{{ route('api.users.destroy', ':userId') }}";
+                    let url = "{{ route('users.destroy', ':userId') }}";
                     url = url.replace(':userId', userId);
 
                     $.post(url, {
@@ -330,29 +329,29 @@
         function openEditModal(id) {
             userId = id;
 
-            let url = '{{ route('api.users.show', ':userId') }}';
+            let url = '{{ route('users.show', ':userId') }}';
             url = url.replace(':userId', userId);
 
             $.get(url)
                 .done((response) => {
-                    // isi form editModal dengan data user
-                    $('#editName').val(response.data.name);
-                    $('#editEmail').val(response.data.email);
-                    // $('#editRole').val(response.data.role);
-                    $('#editNoPhone').val(response.data.phone_number);
+                    // Check if the response contains user data
+                    if (response.data) {
+                        // Populate the form fields with user data
+                        $('#editName').val(response.data.name);
+                        $('#editNoPhone').val(response.data.phone_number);
+                        $('#editEmail').val(response.data.email);
 
-                    // tampilkan modal editModal
-                    $('#editModal').modal('show');
+
+                        // Show the edit modal
+                        $('#editModal').modal('show');
+                    } else {
+                        toastr.error('Data user tidak ditemukan', 'Error');
+                    }
                 })
                 .fail((error) => {
-                    // tampilkan pesan error
-                    toastr.error('Gagal mengambil data user', 'Error')
-                })
-
-
+                    // Display error message
+                    toastr.error('Gagal mengambil data user', 'Error');
+                });
         }
     </script>
 @endpush
-
-
-

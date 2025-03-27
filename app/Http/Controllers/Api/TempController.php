@@ -44,19 +44,20 @@ class TempController extends Controller
         ]);
 
 
-        // Untuk sensor suhu
-        WaNotifService::notifikasiSensorMassal($request->value, 'temperature');
-
-        // Untuk sensor kelembaban
-        WaNotifService::notifikasiSensorMassal($request->value, 'humidity');
-
-
         // Mengembalikan response dalam format JSON
         return response()->json([
             'data' => $data,
             'message' => 'Data saved successfully'
         ], 201);
     }
+
+
+    // // Untuk sensor suhu
+    // WaNotifService::notifikasiSensorMassal($request->value, 'temperature');
+
+    // // Untuk sensor kelembaban
+    // WaNotifService::notifikasiSensorMassal($request->value, 'humidity');
+
 
     /**
      * Display the specified resource.
